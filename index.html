@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./360_F_170132769_Jtkb3SNSW53kJ9R4WvDWYS3JRaT8FTuO.jpg" type="image/x-icon">
+    <title>Thanh Toán</title>
+</head>
+<style> 
+body{
+    margin: 0 auto;
+    background-color:aliceblue;
+}
+    .logo {
+        background-color: rgb(93, 93, 219);
+        display: flex;
+    }
+    .wapper {
+        padding: 0 20px;
+    }
+    h1{
+        font-size: 40px;
+        color:darkblue;
+        text-align: center;
+    }
+    
+
+h2{
+    color: slateblue;
+    font-size: 30px;
+}
+h3{
+    text-align: left;
+    font-size: 40px;}
+h5
+{
+    color:#fff;
+}
+    .wrapper{
+        display: flex;
+        justify-content: space-between;
+        margin: auto 200px
+        
+    }
+    .container-1 {
+        border-radius: 12px solid #ccc;
+        padding: 14px 0ppx;
+    }
+ 
+    .container-1 ul li{  
+        padding: 12px;
+        color:darkslateblue;
+    }
+    .buy {
+        border: 1px solid #ccc;
+        background-color: aliceblue;
+
+    }
+    .buy li{
+        list-style: none;
+        padding: 20px 0px;
+
+    }
+    .cart {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .cart h3 {
+      margin-top: 0;
+    font-size: 20px;
+    }
+
+    .cart-items {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .cart-total {
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .total-label {
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #337ab7;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+
+    </style>
+<body>
+    <div class="logo">
+        <img src="./360_F_170132769_Jtkb3SNSW53kJ9R4WvDWYS3JRaT8FTuO.jpg" alt="" height="60px " width="60px" >
+        <h5>Học Để Lập Trình</h5>
+    </div>
+    <h1>Mở Khóa Học </h1>
+    <div class="wrapper">
+        <div class="container">
+            <p>Sở hữu khóa học HTML CSS <b><i style="color:darkslateblue">đầy đủ và chi tiết</i></b> nhất bạn có thể học online.</p>
+            <P>Có tới<b><i style="color:darkslateblue"> hàng trăm bài tập thực hành</i></b> sau mỗi bài giảng. </P> 
+            <p>Mua thông qua chuyển khoản:</p>
+            <div class="tu">
+                <ul>
+                    <li>STK: 090219073627</li>
+                    <li>NGUYEN DAO NGUYEN GIAP</li>
+                    <li>Nội Dung: họ và tên + sdt</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-1">
+            <h2>Bạn sẽ nhận được gì ???</h2>
+            <ul class="fg">
+                <li>Truy cập toàn bộ Khóa học </li>
+                <li>Hơn 465 bài học</li>
+                <li>Hơn 469 bài tập và thử thách</li>
+                <li>Kênh hỏi đáp riêng tư</li>
+                <li>Mua một lần, học mãi mãi</li>
+            </ul>
+        </div>
+    </div>
+    <div class="cart">
+        <h3>Giỏ hàng</h3>
+        <ul class="cart-items">
+          <!-- Các mục hàng trong giỏ hàng sẽ được thêm vào đây -->
+        </ul>
+        <div class="personal-info">
+          <h4>Thông tin cá nhân</h4>
+          <input type="text" id="name-input" placeholder="Họ và tên">
+          <input type="email" id="email-input" placeholder="Email">
+          <input type="tel" id="phone-input" placeholder="Số điện thoại">
+          <label for="image-upload">Hình ảnh cá nhân:</label>
+          <input type="file" id="image-upload">
+        </div>
+        <div class="cart-total">
+          <span class="total-label">Tổng cộng:</span>
+          <span class="total-price">$0.00</span>
+        </div>
+        <button class="checkout-button">Thanh toán</button>
+      </div>
+    
+</body>
+<script>
+   // Lấy các phần tử cần thiết
+const cartItemsElement = document.querySelector('.cart-items');
+const totalElement = document.querySelector('.total-price');
+const checkoutButton = document.querySelector('.checkout-button');
+const nameInput = document.querySelector('#name-input');
+const emailInput = document.querySelector('#email-input');
+const phoneInput = document.querySelector('#phone-input');
+
+// Biến lưu trữ giá trị tổng giá
+let totalPrice = 0;
+
+// Hàm thêm một mục hàng vào giỏ hàng
+function addItemToCart(itemName, price) {
+  const li = document.createElement('li');
+  li.textContent = `${itemName}: ${formatCurrency(price)}`;
+  cartItemsElement.appendChild(li);
+  totalPrice += price;
+  updateTotalPrice();
+}
+
+// Hàm cập nhật giá trị tổng giá
+function updateTotalPrice() {
+  totalElement.textContent = formatCurrency(totalPrice);
+}
+
+// Xử lý sự kiện khi nhấp vào nút Thanh toán
+checkoutButton.addEventListener('click', function () {
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const phone = phoneInput.value;
+
+  if (name === '' || email === '' || phone === '') {
+    alert('Vui lòng điền đầy đủ thông tin cá nhân!');
+    return;
+  }
+
+  alert(`Cảm ơn ${name} đã mua hàng! Đơn hàng của bạn đã được ghi nhận.`);
+
+  // Reset giỏ hàng và thông tin cá nhân
+  cartItemsElement.innerHTML = '';
+  totalPrice = 0;
+  updateTotalPrice();
+  nameInput.value = '';
+  emailInput.value = '';
+  phoneInput.value = '';
+});
+
+// Hàm định dạng số tiền thành chuỗi định dạng VND
+function formatCurrency(amount) {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+}
+
+// Sử dụng hàm thêm mục hàng vào giỏ hàng
+addItemToCart('Khóa Học', 500000);
+
+  </script>
+</html>
